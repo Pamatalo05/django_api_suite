@@ -10,12 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import firebase_admin
+from firebase_admin import credentials
 from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+FIREBASE_CREDENTIALS_PATH = credentials.Certificate("secrets/landing-key.json")
+firebase_admin.initialize_app(FIREBASE_CREDENTIALS_PATH, {
+   'databaseURL': 'https://lavayen-132fd-default-rtdb.firebaseio.com/'
+})
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -27,7 +33,6 @@ SECRET_KEY = "django-insecure--)(_2vbvm3#_09x!4sf+v%=ks*8%2f7m1v(_69+@$rix!!_7ci
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
